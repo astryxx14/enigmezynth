@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>ZYNTH - Phase 1</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #0f0;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    .hidden {
+      display: none;
+    }
+    input {
+      font-size: 1.2rem;
+      padding: 8px;
+      border-radius: 5px;
+      border: 2px solid #0f0;
+      background: #111;
+      color: #0f0;
+      text-align: center;
+      width: 300px;
+      margin: 10px 0;
+      outline: none;
+    }
+    button {
+      font-size: 1.2rem;
+      padding: 8px 20px;
+      border-radius: 5px;
+      border: none;
+      background: #0f0;
+      color: #000;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #0c0;
+    }
+    #message {
+      margin-top: 15px;
+      font-style: italic;
+      color: #0f0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Phase 1 - Enigmes et connexion</h1>
+
+  <div id="enigme2">
+    <p style="font-style: italic; font-size: 1.2rem;">
+      Nous sommes la menace,<br />
+      Invisible mais présente,<br />
+      Notre nom se lit entre les lignes.
+    </p>
+    <button id="nextEnigme">Passer à la deuxième énigme</button>
+  </div>
+
+  <div id="enigme1" class="hidden">
+    <p style="font-style: italic; font-size: 1.2rem;">
+      Le clic est dans le souffle,<br />
+      L’écho dans la couleur,<br />
+      Le serpent guette.
+    </p>
+    <button id="startLogin">Je veux me connecter</button>
+  </div>
+
+  <div id="login" class="hidden">
+    <p>Entrez vos identifiants pour accéder à la suite :</p>
+    <input type="text" id="identifiant" placeholder="Identifiant" autocomplete="off" /><br />
+    <input type="password" id="motdepasse" placeholder="Mot de passe" autocomplete="off" /><br />
+    <button id="validerLogin">Valider</button>
+    <div id="loginMessage"></div>
+  </div>
+
+  <div id="indiceMotMystere" class="hidden">
+    <p><strong>Mot mystère :</strong> <em>audio</em></p>
+    <p><em>Envoyez ce mot mystère en message privé sur Discord à <strong>Astryxx</strong> pour débloquer la phase 2.</em></p>
+  </div>
+
+  <script>
+    const enigme2Div = document.getElementById('enigme2');
+    const enigme1Div = document.getElementById('enigme1');
+    const startLoginBtn = document.getElementById('startLogin');
+    const loginDiv = document.getElementById('login');
+    const indiceDiv = document.getElementById('indiceMotMystere');
+
+    const identifiantInput = document.getElementById('identifiant');
+    const motdepasseInput = document.getElementById('motdepasse');
+    const validerLoginBtn = document.getElementById('validerLogin');
+    const loginMessage = document.getElementById('loginMessage');
+
+    const ID_CORRECT = 'zynth';
+    const MDP_CORRECT = 'razer';
+
+    document.getElementById('nextEnigme').addEventListener('click', () => {
+      enigme2Div.classList.add('hidden');
+      enigme1Div.classList.remove('hidden');
+    });
+
+    startLoginBtn.addEventListener('click', () => {
+      enigme1Div.classList.add('hidden');
+      loginDiv.classList.remove('hidden');
+      identifiantInput.focus();
+    });
+
+    validerLoginBtn.addEventListener('click', () => {
+      const id = identifiantInput.value.trim().toLowerCase();
+      const mdp = motdepasseInput.value.trim().toLowerCase();
+
+      if (id === ID_CORRECT && mdp === MDP_CORRECT) {
+        loginDiv.classList.add('hidden');
+        indiceDiv.classList.remove('hidden');
+      } else {
+        loginMessage.textContent = "Identifiant ou mot de passe incorrect.";
+      }
+    });
+  </script>
+</body>
+</html>
