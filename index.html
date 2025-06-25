@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>ZYNTH | Phase 1</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      background-color: #000000;
+      color: #00ff00;
+      font-family: 'Courier New', Courier, monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 600px;
+      width: 100%;
+      border: 2px solid #00ff00;
+      padding: 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #00ff00aa;
+      background-color: #001100;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      align-items: center;
+    }
+
+    h1 {
+      font-weight: bold;
+      font-size: 2.5rem;
+      text-align: center;
+      margin: 0 0 20px 0;
+      letter-spacing: 0.15em;
+      width: 100%;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 100%;
+      max-width: 400px;
+      align-items: center;
+    }
+
+    input {
+      background-color: transparent;
+      border: 2px solid #00ff00;
+      border-radius: 6px;
+      padding: 12px 15px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1.1rem;
+      color: #00ff00;
+      caret-color: #00ff00;
+      transition: border-color 0.3s ease;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    input::placeholder {
+      color: #00ff0055;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #00ffaa00;
+      box-shadow: 0 0 8px #00ff00cc;
+    }
+
+    button {
+      background-color: transparent;
+      border: 2px solid #00ff00;
+      border-radius: 6px;
+      padding: 12px 0;
+      font-family: 'Courier New', Courier, monospace;
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: #00ff00;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #00ff00;
+      color: #000000;
+    }
+
+    .error-message {
+      color: #ff3333;
+      font-weight: bold;
+      text-align: center;
+      display: none;
+      width: 100%;
+    }
+
+    .enigmes {
+      display: none;
+      font-size: 1.2rem;
+      line-height: 1.5;
+      margin-top: 20px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .enigmes.active {
+      display: block;
+    }
+
+    .mot-mystere {
+      border-top: 2px solid #00ff00;
+      padding-top: 18px;
+      font-weight: bold;
+      color: #00ff00;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>ZYNTH | PHASE 1</h1>
+
+    <form id="loginForm">
+      <input type="text" id="idInput" placeholder="ACCESS_ID" autocomplete="off" required />
+      <input type="password" id="pwdInput" placeholder="PASSWORD_KEY" autocomplete="off" required />
+      <button type="submit">ENTRER</button>
+      <div id="errorMessage" class="error-message">⛔ Accès refusé. Réessaie.</div>
+    </form>
+
+    <div id="enigmesContent" class="enigmes">
+      <div class="mot-mystere">
+        <p><strong>Phase 1 - Enigmes et connexion</strong></p>
+        <p><strong>Mot mystère : </strong>audio</p>
+        <p>Envoyez ce mot mystère en message privé sur Discord à <strong>Astryxx</strong> pour débloquer la phase 2.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    const errorMessage = document.getElementById('errorMessage');
+    const enigmesContent = document.getElementById('enigmesContent');
+
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const id = document.getElementById('idInput').value.trim();
+      const pwd = document.getElementById('pwdInput').value.trim();
+
+      if(id === 'x9L2v' && pwd === 'Q7ra1') {
+        loginForm.style.display = 'none';
+        enigmesContent.classList.add('active');
+        errorMessage.style.display = 'none';
+      } else {
+        errorMessage.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>
